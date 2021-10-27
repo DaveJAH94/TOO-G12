@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('usuario', require('./components/usuario.vue'));//nuevo componente para usar en plantilla de usuarios
 
 const app = new Vue({
     el: '#app',

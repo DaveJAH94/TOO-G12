@@ -20,13 +20,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    //inicio de la funcion copiada del codigo fuentre de laravel vendor
+    
+    //fin de funcion copiada del codigo fuente de laravel en vendor/framework/src/illuminate
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
+    protected $redirectTo = '/home';//modificado antes solo era /  
+    //cuando se autentifique mandara al /home que es donde esta la primera vista con componentes
     /**
      * Create a new controller instance.
      *
@@ -36,4 +40,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function logout () {
+        //logout user
+        auth()->logout();
+        // redirect to homepage
+        return redirect('/login');
+    }
+    public function logeoInicial () {
+        return redirect('/login');
+    }
+    
 }

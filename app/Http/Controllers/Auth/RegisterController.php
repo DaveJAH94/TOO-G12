@@ -49,7 +49,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'dui' => 'required|string|max:10',/* Nuevo para dui */
+            'nombre' => 'required|string|max:40|',/* Nuevo */
+            'apellido' => 'required|string|max:50|',/* Nuevo */
+            'nit' => 'required|string|max:17|',/* Nuevo */
+            'fechaNacimiento' => 'required|string|min:10|',/* Nuevo */
+            //'estado' => 'required|boolean|',/* Ojo con boolean posible error */
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,8 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data);
         return User::create([
-            'name' => $data['name'],
+            'dui' => $data['dui'],/* Nuevo para dui */
+            'nombre' => $data['nombre'],/* Nuevo */
+            'apellido' => $data['apellido'],/* Nuevo */
+            'nit' => $data['nit'],/* Nuevo */
+            'fechaNacimiento' => $data['fechaNacimiento'],/* Nuevo */
+            'estado' => $data['estado'] ? true : false,/* Nuevo con ? true : false; comprueba si se a accionado el check , si no se envia lo toma como falso  */
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
